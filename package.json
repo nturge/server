@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "building a server with nodejs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nturge/server.git"
+  },
+  "author": "Nick Turgeon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nturge/server/issues"
+  },
+  "homepage": "https://github.com/nturge/server#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
