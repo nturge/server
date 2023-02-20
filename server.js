@@ -2,8 +2,8 @@ const express = require('express')
 const app = express()
 const port = 8000
 
-app.get('/',(req, res)=>{
-    app.SendFile('www/index.html')
+app.get('/', (req, res) =>  {
+    res.sendFile(`${__dirname}/www/index.html`)
 })
 app.listen(port, (err) =>{
     if(err)return console.log(err)
