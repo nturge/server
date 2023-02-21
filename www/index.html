@@ -1,1 +1,30 @@
-hello
+<main>
+    <div>
+        <div id=" title">hello</div>
+        <img src="" id="dog">
+       </div>
+</main>
+
+<script>
+    function postFPrint(){
+        const data = {
+            userAgent: navigator.userAgent,
+            language: navigator.language,
+            color: screen.colorDepth,
+            height: screen.height,
+            width: screen.width
+        }
+
+        const url ='api/fingerprint'
+        const req = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        }
+        fetch(url, req)
+        .then(res => res.json())
+        .then(data => {
+           console.log(data)
+        })
+    }
+</script>
