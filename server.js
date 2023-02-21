@@ -14,7 +14,7 @@ app.get('/', (req, res) =>  {
 
 function updateDB (){
     const data = JSON.stringify(db)
-    fs.writeFile('./database.json', data, () =>{
+    fs.writeFile('./database.json', data, (err) =>{
     if (err) console.log('something went wrong', err)
     else console.log('database was updated!')    
     })
@@ -29,7 +29,7 @@ app.post('/api/fingerprint', (req, res) => {
     if (db.hasOwnProperty(bfp)){
         db[bfp].push(Date.now())
     }else {
-        db[bfp]= [Date.now()]
+        db[bfp] = [Date.now()]
     }
 
     updateDB()
