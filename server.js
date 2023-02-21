@@ -13,8 +13,8 @@ app.get('/', (req, res) =>  {
 })
 
 function updateDB (){
-    const data = JSON.stringify(db)
-    fs.writeFile('./database.json', data, (err) =>{
+    const data = JSON.stringify(db, null, 2)
+    fs.writeFile('./database.json', data, (err) => {
     if (err) console.log('something went wrong', err)
     else console.log('database was updated!')    
     })
