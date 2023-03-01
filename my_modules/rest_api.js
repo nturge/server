@@ -6,6 +6,12 @@ const router = express.Router()
 
 module.exports = data
 
+router.get('/api/random-cat', (req, res) => {
+    const cats = fs.readdirSync('./www/images')
+    const ran = Math.floor(Math.random()* cats.length)
+    res.json({message: `images/${cats[ran]}` })
+})
+
 function updateDB (){
     const data = JSON.stringify(db, null, 2)
     fs.writeFile(`${__dirname}/database.json`, data, (err) => {

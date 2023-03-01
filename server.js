@@ -8,6 +8,7 @@ console.log(restAPI)
 
 app.use(bodyParser.json())
 app.use(restAPI)
+app.use(express.static('www'))
 app.get('/', (req, res) =>  {
     res.sendFile(`${__dirname}/www/index.html`)
 })

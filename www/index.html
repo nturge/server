@@ -3,12 +3,13 @@
         <main>
             <div>
                 <div id=" title">hello</div>
-                <img src="" id="dog">
+                <img src="" id="cat">
                </div>
         </main>
 
         <script>
 
+            getCat()
             postFPrint()
             
                 function postFPrint() {
@@ -31,6 +32,16 @@
                     .then(data => {console.log(data)})
                 }
             
+                function getCat(){
+                const cat = document.querySelector('#cat')
+                const url = '/api/random-cat'
+                const req = { method: 'GET' }
+                feth(url, req)
+                .then(res => res.json())
+                .then(data =>{
+                    cat.setAttribute('src', data.message)
+                })
+                }
             </script>
 
     </body>
