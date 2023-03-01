@@ -1,6 +1,6 @@
 const data = 'hello world'
 const crypto = require('crypto')
-const db = require('./database.json')
+const db = require(`${__dirname}/database.json`)
 const fs = require('fs')
 const router = express.Router()
 
