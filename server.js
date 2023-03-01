@@ -3,8 +3,11 @@ const bodyParser = require('body-parser')
 const app = express()
 const crypto = require('crypto')
 const fs = require('fs')
-const db = require('./database.json')
+const db = require('./my_modules/database.json')
 const port = 8000
+
+const restAPI = require('./my_modules/rest_api.js')
+console.log(restAPI)
 
 app.use(bodyParser.json())
  
