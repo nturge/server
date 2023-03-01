@@ -1,16 +1,11 @@
 const data = 'hello world'
 const crypto = require('crypto')
-const db = require(`${__dirname}/database.json`)
+const db = require('./database.json')
 const fs = require('fs')
+const express = require('express')
 const router = express.Router()
 
 module.exports = data
-
-router.get('/api/random-cat', (req, res) => {
-    const cats = fs.readdirSync('./www/images')
-    const ran = Math.floor(Math.random()* cats.length)
-    res.json({message: `images/${cats[ran]}` })
-})
 
 function updateDB (){
     const data = JSON.stringify(db, null, 2)
@@ -19,6 +14,13 @@ function updateDB (){
     else console.log('database was updated!')    
     })
 }
+
+router.get('/api/random-cat', (req, res) => {
+    const cats = fs.readdirSync('./www/images')
+    console.log(cats)
+    const ran = Math.floor(Math.random()* cats.length)
+    res.json({message: `images/${cats[ran]}` })
+})
 
 router.post('/api/fingerprint', (req, res) => {
     const md5 = crypto.createHash('md5')
