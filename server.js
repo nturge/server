@@ -2,9 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const port = 8000
-
 const restAPI = require('./my_modules/rest_api.js')
-console.log(restAPI)
+
 
 app.use(bodyParser.json())
 app.use(restAPI)

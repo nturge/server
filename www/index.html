@@ -36,9 +36,9 @@
                 const cat = document.querySelector('#cat')
                 const url = '/api/random-cat'
                 const req = { method: 'GET' }
-                feth(url, req)
+                fetch(url, req)
                 .then(res => res.json())
-                .then(data =>{
+                .then(data => {
                     cat.setAttribute('src', data.message)
                 })
                 }
