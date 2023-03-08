@@ -9,18 +9,12 @@ module.exports = data
 
 function updateDB (){
     const data = JSON.stringify(db, null, 2)
-    fs.writeFile(`${_dirname}/database.json`, data, (err) => {
+    fs.writeFile(`${__dirname}/database.json`, data, (err) => {
     if (err) console.log('something went wrong', err)
     else console.log('database was updated!')    
     })
 }
 
-router.get('/api/random-cat', (req, res) => {
-    const cats = fs.readdirSync('./www/images')
-    console.log(cats)
-    const ran = Math.floor(Math.random()* cats.length)
-    res.json({message: `images/${cats[ran]}` })
-})
 
 router.post('/api/fingerprint', (req, res) => {
     const md5 = crypto.createHash('md5')
@@ -38,3 +32,5 @@ router.post('/api/fingerprint', (req, res) => {
 
     res.json({message: 'got it!' })
 })
+
+module.exports = router
