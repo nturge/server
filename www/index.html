@@ -1,49 +1,200 @@
-<html>
-    <body>
-        <main>
-            <div>
-                <div id=" title">hello</div>
-                <img src="" id="cat">
-               </div>
-        </main>
+<!DOCTYPE html>
+<html lang="en-US">
 
-        <script>
+<head>
+  <meta charset="utf-8">
+    <meta name="author" content="Nick Turgeon">
+  <title>(type)To Make a Dadaist Poem</title>
+  
+  <style>
+    .keyboard{
+      display:none;
+    }
 
-            getCat()
-            postFPrint()
-            
-                function postFPrint() {
-                    const data = {
-                        userAgent: navigator.userAgent,
-                        language: navigator.language,
-                        color: screen.colorDepth,
-                        height: screen.height,
-                        width: screen.width
-                    }
-            
-                    const url ='api/fingerprint'
-                    const req = {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json'},
-                        body: JSON.stringify(data)
-                    }
-                    fetch(url, req)
-                    .then(res => res.json())
-                    .then(data => {console.log(data)})
-                }
-            
-                function getCat(){
-                const cat = document.querySelector('#cat')
-                const url = '/api/random-cat'
-                const req = { method: 'GET' }
-                fetch(url, req)
-                .then(res => res.json())
-                .then(data => {
-                    cat.setAttribute('src', data.message)
-                })
-                }
-            </script>
+    .textBox{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: auto;
+      width: 70%;
+      padding-bottom: 15%;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 40px;
+      position: relative;
+      top: 30vh;
+      
+    }
+    
+  </style>
+  
+</head>
+ 
+<body>
 
-    </body>
+<div class="textBox"> 
+  (type) To Make a Dadaist Poem
+  </div>
+
+<div class="keyboard">
+  <div id="Q"></div>
+  <div id="W"></div>
+  <div id="E"></div>
+  <div id="R"></div>
+  <div id="T"></div>
+  <div id="Y"></div>
+  <div id="U"></div>
+  <div id="I"></div>
+  <div id="O"></div>
+  <div id="P"></div>
+  <div id="A"></div>
+  <div id="S"></div>
+  <div id="D"></div>
+  <div id="F"></div>
+  <div id="G"></div>
+  <div id="H"></div>
+  <div id="J"></div>
+  <div id="K"></div>
+  <div id="L"></div> 
+  <div id="Z"></div>
+  <div id="X"></div>
+  <div id="C"></div>
+  <div id="V"></div>
+  <div id="B"></div>
+  <div id="N"></div>
+  <div id="M"></div>
+  </div>
+  <script>
+
+const keyMap = {
+				"113": { id: "#Q" },
+				"119": { id: "#W" },
+				"101": { id: "#E" },
+				"114": { id: "#R" },
+				"116": { id: "#T" },
+				"121": { id: "#Y" },
+				"117": { id: "#U" },
+				"105": { id: "#I" },
+				"111": { id: "#O" },
+				"112": { id: "#P" },
+				"97": { id: "#A" },
+				"115": { id: "#S" },
+				"100": { id: "#D" },
+				"102": { id: "#F" },
+				"103": { id: "#G" },
+				"104": { id: "#H" },
+				"106": { id: "#J" },
+				"107": { id: "#K" },
+				"108": { id: "#L" },
+				"122": { id: "#Z" },
+				"120": { id: "#X" },
+				"99": { id: "#C" },
+				"118": { id: "#V" },
+				"98": { id: "#B" },
+				"110": { id: "#N" },
+				"109": { id: "#M" }
+			}
+
+let arrayA = []
+let arrayB = []
+
+let runCount= 0
+const pageNumber = runCount
+
+console.log('the runCount is now' + runCount)
+
+  async function getNews() {
+    runCount++
+    const pageNumber = runCount
+    const endpoint = `https://newsdata.io/api/1/news?apikey=pub_1409055ef1b441ef303d46bb785eb7b4f0cdf&country=us&language=en`
+    let response = await fetch(endpoint)
+    const json = await response.json()
+    console.log(json)
+    for (let i = 0; i < json.results.length; i++){
+     const text = json.results[i]['title']
+     const array = text.split(" ")
+     arrayA.push(...array)
+    }
+    console.log('the runCount is now' + runCount)
+    console.log(arrayA)
+  }
+  getNews()
+
+  function swapForArray(e) {
+  const c = e.keyCode
+  if(c <= 122,c >= 97){
+  let ranNum = Math.floor(Math.random() * arrayA.length)
+  let ranItem = arrayA.splice(ranNum,1)
+  arrayB.push(ranItem[0])
+	const textBox = document.querySelector('.textBox')
+  textBox.innerHTML = arrayB.join(' ') 
+  }
+  console.log('the length of arrayA is' + arrayA.length)
+  console.log('the length of arrayB is' + arrayB.length)
+      }
+   
+    window.addEventListener('keypress', swapForArray)
+    
+  function keyPopper(e){
+    const textBox = document.querySelector('.textBox')
+    if(e.key === 'Backspace') {
+      arrayB.pop() 
+    }
+    if(e.key === '.'){
+      arrayB.push('.')  
+    }
+    if(e.key === ','){
+      arrayB.push(',')
+    }
+    if(e.key === '?'){
+      arrayB.push('?')
+    }
+    if(e.key === '-'){
+      arrayB.push('-')
+    }
+    if(e.key === '('){
+      arrayB.push('(')
+    }
+    if(e.key === ')'){
+      arrayB.push(')')
+    }
+    if(e.key === '/'){
+      arrayB.push('/')
+    }
+    if(e.key === ':'){
+      arrayB.push(':')
+    }
+    if(e.key === ';'){
+      arrayB.push(';')
+    }
+    if(e.key === '&'){
+      arrayB.push('&')
+    }
+    if(e.key === '<'){
+      arrayB.push('<')
+    }
+    if(e.key === '>'){
+      arrayB.push('>')
+    }
+    if(e.key === '!'){
+      arrayB.push('!')
+    }
+    if(e.key === 'Enter'){
+      arrayA = []
+      getNews()
+      console.log(arrayA)
+    }
+    textBox.innerHTML = arrayB.join(' ')
+  }
+    window.addEventListener('keydown', keyPopper)
+  
+
+
+
+
+
+</script>
+
+</body>
+  
 </html>
-

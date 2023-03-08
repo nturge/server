@@ -2,6 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const port = 8000
+const path = require('path')
+// const restAPI = require(path.join(__dirname, './my_modules/rest_api.js'))
 const restAPI = require('./my_modules/rest_api.js')
 
 
